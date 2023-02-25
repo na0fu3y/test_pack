@@ -6,8 +6,6 @@ on:
 jobs:
   register:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
     steps:
       - uses: actions/checkout@v3
       - uses: buildpacks/github-actions/setup-pack@v5.0.0
