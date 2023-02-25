@@ -22,4 +22,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: pack build --publish ${{ env.IMAGE_NAME }}:latest --builder=gcr.io/buildpacks/builder:v1
+      - run: pack build --publish ghcr.io/${{ env.IMAGE_NAME }}:latest --builder=gcr.io/buildpacks/builder:v1
