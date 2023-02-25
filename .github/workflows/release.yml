@@ -10,7 +10,6 @@ jobs:
   register:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       packages: write
     steps:
       - uses: actions/checkout@v3
@@ -22,4 +21,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: pack build --publish ghcr.io/${{ env.IMAGE_NAME }}:latest --builder=gcr.io/buildpacks/builder:v1
+      - run: pack build --publish ghcr.io/${GITHUB_REPOSITORY}:latest --builder=gcr.io/buildpacks/builder:v1
