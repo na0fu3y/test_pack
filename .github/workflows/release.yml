@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: buildpacks/github-actions/setup-pack@v5.0.0
+
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: pack build package --publish ${{ env.IMAGE_NAME }}:latest --builder=gcr.io/buildpacks/builder:v1
